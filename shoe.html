@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+</head>
+<style>
+td, th{
+    border: 1px solid black;
+    padding: 20px;
+    border-collapse: collapse;
+    width: 200px;
+}
+</style>
+<body>
+
+   <div style="display: flex;">
+    <label for="cars">Select footwear</label>
+
+    <select name="cars" id="wears">
+    <option value="Sneakers">Sneakers</option>
+    <option value="Slide">Slide</option>
+    
+    </select>
+    <button onclick="addShoe()">add</button>
+   </div>
+   <div style="display: flex;">
+    <input id="quantity" placeholder="quantity" type="number">
+    <button onclick="addQty(); calculateBill()">add</button>
+   </div>
+    <br>
+   <table>
+    <thead>
+        <tr>
+            <th> Description </th>
+            <th> quantity </th>
+            <th> Price </th>
+            <th> Action </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="displayWear"></td>
+            <td id="displayQuantity"></td>
+            <td id="bill"></td>
+            <td id="clear"><button onclick="clearOrder()">CLEAR</button></td>
+        </tr>
+    </tbody>
+   </table>
+</body>
+</html>
+<script>
+    let wears = document.getElementById("wears");
+    let Array1 = [{Slide: "7000", Sneakers: "8000"}];
+    let displayWear = document.getElementById("displayWear");
+    let quantity = document.getElementById("quantity");
+    let bill = document.getElementById("bill");
+
+    function addShoe(){
+    let selectWears = wears.value;
+    
+    displayWear.innerHTML= selectWears;
+    }
+
+    function addQty(){
+        let qty = quantity.value;
+        displayQuantity.innerHTML= qty;
+        
+    }
+
+    function calculateBill() {
+    let selectWears = wears.value;
+    let qty = parseInt(quantity.value);
+    let price;
+    
+    if (Array1[0].hasOwnProperty(selectWears)) {
+        price = Array1[0][selectWears];
+        bill.innerHTML = qty * price;
+    } else {
+        bill.innerHTML = "Invalid selection";
+    }
+    }
+
+    function clearOrder(){
+    displayWear.innerHTML = "";
+    displayQuantity.innerHTML = "";
+    bill.innerHTML = "";
+    }
+
+    
+
+</script>
